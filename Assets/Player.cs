@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public static float PLAYER_SPEED = 1;
-	public static float PLAYER_FATNESS = 20;
+	public static float PLAYER_FATNESS = 25;
 	public GameObject Room;
 	// Use this for initialization
 	void Start () {
