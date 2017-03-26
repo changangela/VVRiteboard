@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	public static float PLAYER_SPEED = 1;
 	public static float PLAYER_FATNESS = 25;
+	public static float PEN_DIST = 15;
 	public static float EPS = 10e-7f;
 	public static Vector3 PLAYER_DEFAULT_POSITION = new Vector3(100, 25, 100);
 	public enum PlayerZone {

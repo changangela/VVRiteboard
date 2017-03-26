@@ -20,6 +20,7 @@ public class ConfirmMenu : MonoBehaviour {
 		GameObject player = GameObject.Find("Player");
 		player.transform.position = Player.PLAYER_DEFAULT_POSITION;
 		GameObject menu = GameObject.Find("ConfirmMenu");
+
 		menu.transform.position = HIDDEN_DEFAULT_POSITION;
 		Player.zone = Player.PlayerZone.WALKING;
 	}
@@ -33,30 +34,44 @@ public class ConfirmMenu : MonoBehaviour {
 
 		GameObject player = GameObject.Find("Player");
 
-		GameObject backButton = GameObject.Find("BackButton");
-		backButton.transform.position = HIDDEN_DEFAULT_POSITION;
+		GameObject leaveMenu = GameObject.Find("LeaveMenu");
+		leaveMenu.transform.position = HIDDEN_DEFAULT_POSITION;
 
 		GameObject room = GameObject.Find("Room");
-		if ((player.transform.position.x - Player.PLAYER_FATNESS) < Player.EPS) {
-  			backButton.transform.position = player.transform.position + new Vector3(1 , 0, 0) * Player.MENU_DIST;
-  		} else if ((room.transform.localScale.x / 2 - Player.PLAYER_FATNESS - player.transform.position.x) < Player.EPS) {
-  			backButton.transform.position = player.transform.position - new Vector3(1, 0, 0) * Player.MENU_DIST;
-  		} else if ((player.transform.position.z - Player.PLAYER_FATNESS) < Player.EPS) {
-  			backButton.transform.position = player.transform.position + new Vector3(0, 0, 1) * Player.MENU_DIST;
-  		} else if ((room.transform.localScale.z / 2 - Player.PLAYER_FATNESS - player.transform.position.z) < Player.EPS) {
-  			backButton.transform.position = player.transform.position - new Vector3(0, 0, 1) * Player.MENU_DIST;
-  		}
+		
+		GameObject pens = GameObject.Find("Pens");
 
-  		Debug.Log(backButton.transform.position.x);
+		if ((player.transform.position.x - Player.PLAYER_FATNESS) < Player.EPS) {
+  			leaveMenu.transform.position = player.transform.position + new Vector3(1 , 0, 0) * Player.MENU_DIST;
+  			pens.transform.position = new Vector3(player.transform.position.x, 20, player.transform	.position.z) - new Vector3(1, 0, 0) * Player.PEN_DIST;
+  			pens.transform.forward = new Vector3(1, 0, 0);
+  			leaveMenu.transform.forward = new Vector3(1, 0, 0);
+  		} else if ((room.transform.localScale.x / 2 - Player.PLAYER_FATNESS - player.transform.position.x) < Player.EPS) {
+  			leaveMenu.transform.position = player.transform.position - new Vector3(1, 0, 0) * Player.MENU_DIST;
+  			pens.transform.position = new Vector3(player.transform.position.x, 20, player.transform	.position.z) + new Vector3(1, 0, 0) * Player.PEN_DIST;
+  			pens.transform.forward = new Vector3(1, 0, 0);
+  			leaveMenu.transform.forward = new Vector3(-1, 0, 0);
+  		} else if ((player.transform.position.z - Player.PLAYER_FATNESS) < Player.EPS) {
+  			leaveMenu.transform.position = player.transform.position + new Vector3(0, 0, 1) * Player.MENU_DIST;
+			pens.transform.position = new Vector3(player.transform.position.x, 20, player.transform	.position.z) - new Vector3(0, 0, 1) * Player.PEN_DIST;
+			pens.transform.forward = new Vector3(0, 0, 1);
+			leaveMenu.transform.forward = new Vector3(0, 0, 1);
+  		} else if ((room.transform.localScale.z / 2 - Player.PLAYER_FATNESS - player.transform.position.z) < Player.EPS) {
+  			leaveMenu.transform.position = player.transform.position - new Vector3(0, 0, 1) * Player.MENU_DIST;
+  			pens.transform.position = new Vector3(player.transform.position.x, 20, player.transform	.position.z) + new Vector3(0, 0, 1) * Player.PEN_DIST;
+  			pens.transform.forward = new Vector3(0, 0, 1);
+  			leaveMenu.transform.forward = new Vector3(0, 0, -1);
+  		}
+  		Debug.Log(leaveMenu.transform.position.x);
 	}
 
-	public void onBack() {
+	public void onExplore() {
 		if (Player.zone == Player.PlayerZone.SELECTION) {
 			Player.zone = Player.PlayerZone.WALKING;
 			GameObject player = GameObject.Find("Player");
 			player.transform.position = Player.PLAYER_DEFAULT_POSITION;
-			GameObject backButton = GameObject.Find("BackButton");
-			backButton.transform.position = HIDDEN_DEFAULT_POSITION;
+			GameObject leaveMenu = GameObject.Find("LeaveMenu");
+			leaveMenu.transform.position = HIDDEN_DEFAULT_POSITION;
 		}
 	}
 
