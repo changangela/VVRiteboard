@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 
 	public static PlayerZone zone = PlayerZone.WALKING;
 
-	public List<GameObject> spots = new List<GameObject>();
+	public static List<GameObject> spots = new List<GameObject>();
 	public GameObject Room;
 	public static float DRAWING_RADIUS = 2f;
 
