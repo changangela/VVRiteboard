@@ -22,5 +22,8 @@ Here are examples of what can be made in VVRiteboard:
   <img src="v2.png" width="250"/>
 </p>
 
+## Future Outlook
+We plan on expanding VVRiteboard to be an platform that allows multiple users to work in the same virtual environment simultaneously.
+
 ## WearHacks 2017
 Our devpost submission can be viewed here: https://devpost.com/software/vvriteboard
