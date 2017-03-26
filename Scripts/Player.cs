@@ -13,7 +13,9 @@ public class Player : MonoBehaviour {
 	public enum PlayerZone {
 		WALKING,
 		SELECTION,
-		DRAWING
+		DRAWING,
+		ERASING,
+		UNDOING
 	};
 	public static float MENU_DIST = 15f;
 
@@ -42,6 +44,10 @@ public class Player : MonoBehaviour {
 		  		GameObject pens = GameObject.Find("Pens");
 		  		pens.transform.position = transform.position + new Vector3(transform.forward.x, transform.forward.y, transform.forward.z) * MENU_DIST;
 				pens.transform.forward = transform.forward;
+
+				GameObject pointer = GameObject.Find("Pointer");
+		  		pointer.transform.position = transform.position + new Vector3(transform.forward.x, transform.forward.y, transform.forward.z) * MENU_DIST;
+				pointer.transform.forward = transform.forward;
 			}
 		} else {
 			faceUp = false;
@@ -69,6 +75,12 @@ public class Player : MonoBehaviour {
 					GameObject spotClone = Instantiate(spot, transform.position + transform.forward * DRAWING_RADIUS, transform.rotation);
 					spots.Add(spotClone);
 				}
+			}
+
+			if (zone == PlayerZone.UNDOING) {
+				GameObject tempSpot = spots[spots.Count - 1];
+				spots.RemoveAt(spots.Count - 1);
+				Destroy(tempSpot);
 			}
 	  	}
 

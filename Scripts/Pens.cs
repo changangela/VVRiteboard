@@ -63,5 +63,15 @@ public class Pens : MonoBehaviour {
 
 	public void onEraser() {
 		Debug.Log("Eraser tool selected...");
+
+		Player.zone = Player.PlayerZone.ERASING;
+	}
+
+	public void onUndo() {
+		Debug.Log("Eraser tool selected...");
+
+		Player.zone = Player.PlayerZone.UNDOING;
+		GameObject pens = GameObject.Find("Pens");
+		pens.transform.position = ConfirmMenu.HIDDEN_DEFAULT_POSITION;
 	}
 }
