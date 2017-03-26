@@ -17,7 +17,7 @@ When the user selects a tool, the pointer changes colours and he/she stops walki
 Here are examples of what can be made in VVRiteboard:
 
 <p align="center">
-  <img src="v3.png" width="250"/>
+  <img src="v3.jpg" width="250"/>
   <img src="v1.png" width="250"/>
   <img src="v2.png" width="250"/>
 </p>
