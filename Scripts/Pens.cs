@@ -76,6 +76,15 @@ public class Pens : MonoBehaviour {
 		pens.transform.position = ConfirmMenu.HIDDEN_DEFAULT_POSITION;
 	}
 
+	public void onClear() {
+		for (int i = 0; i < Player.spots.Count; ++i) {
+			Destroy(Player.spots[i]);
+		}
+		Player.spots.Clear();
+
+
+	}
+
 	public void onSpot(GameObject spot) {
 		if (Player.zone == Player.PlayerZone.ERASING && Input.GetMouseButton(0)) {
 			Player.spots.Remove(spot); 
