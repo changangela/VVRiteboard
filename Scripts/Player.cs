@@ -56,6 +56,11 @@ public class Player : MonoBehaviour {
 			menu.transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
 	  		menu.SetActive(true);
 	  	}
+
+	  	if (zone == PlayerZone.DRAWING) {
+	  		GameObject pointer = GameObject.Find("Pointer");
+	  		pointer.transform.position = transform.position + transform.forward;
+	  	}
   		
 	}
 }

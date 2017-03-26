@@ -62,6 +62,7 @@ public class ConfirmMenu : MonoBehaviour {
   			pens.transform.forward = new Vector3(0, 0, 1);
   			leaveMenu.transform.forward = new Vector3(0, 0, -1);
   		}
+
   		Debug.Log(leaveMenu.transform.position.x);
 	}
 
@@ -72,6 +73,8 @@ public class ConfirmMenu : MonoBehaviour {
 			player.transform.position = Player.PLAYER_DEFAULT_POSITION;
 			GameObject leaveMenu = GameObject.Find("LeaveMenu");
 			leaveMenu.transform.position = HIDDEN_DEFAULT_POSITION;
+			GameObject pens = GameObject.Find("Pens");
+			pens.transform.position = HIDDEN_DEFAULT_POSITION;
 		}
 	}
 
