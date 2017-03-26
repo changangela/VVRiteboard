@@ -21,6 +21,9 @@ public class Pens : MonoBehaviour {
 
 		GameObject pens = GameObject.Find("Pens");
 		pens.transform.position = ConfirmMenu.HIDDEN_DEFAULT_POSITION;
+
+		GameObject spot = GameObject.Find("Spot");
+		spot.GetComponent<Renderer>().material = Resources.Load("green-material") as Material;
 	}
 
 	public void onBlue() {
@@ -30,6 +33,9 @@ public class Pens : MonoBehaviour {
 		pointerMaterial.color = new Color(0, 0, 255);
 		GameObject pens = GameObject.Find("Pens");
 		pens.transform.position = ConfirmMenu.HIDDEN_DEFAULT_POSITION;
+
+		GameObject spot = GameObject.Find("Spot");
+		spot.GetComponent<Renderer>().material = Resources.Load("blue-material") as Material;
 	}
 
 	public void onRed() {
@@ -39,6 +45,9 @@ public class Pens : MonoBehaviour {
 		pointerMaterial.color = new Color(255, 0, 0);
 		GameObject pens = GameObject.Find("Pens");
 		pens.transform.position = ConfirmMenu.HIDDEN_DEFAULT_POSITION;
+
+		GameObject spot = GameObject.Find("Spot");
+		spot.GetComponent<Renderer>().material = Resources.Load("red-material") as Material;
 	}
 
 	public void onBlack() {
@@ -48,6 +57,8 @@ public class Pens : MonoBehaviour {
 		pointerMaterial.color = new Color(0, 0, 0);
 		GameObject pens = GameObject.Find("Pens");
 		pens.transform.position = ConfirmMenu.HIDDEN_DEFAULT_POSITION;
+		GameObject spot = GameObject.Find("Spot");
+		spot.GetComponent<Renderer>().material = Resources.Load("black-material") as Material;
 	}
 
 	public void onEraser() {

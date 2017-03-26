@@ -5,21 +5,25 @@ using UnityEngine;
 
 
 public class Player : MonoBehaviour {
-	public static float PLAYER_SPEED = 1;
+	public static float PLAYER_SPEED = 0.3f;
 	public static float PLAYER_FATNESS = 25;
+	public static float PEN_DIST = 15;
 	public static float EPS = 10e-7f;
 	public static Vector3 PLAYER_DEFAULT_POSITION = new Vector3(100, 25, 100);
 	public enum PlayerZone {
 		WALKING,
-		CONFIRM_MENU,
 		SELECTION,
 		DRAWING
 	};
-	public static float MENU_DIST = 3f;
+	public static float MENU_DIST = 15f;
 
 	public static PlayerZone zone = PlayerZone.WALKING;
 
+	public List<GameObject> spots = new List<GameObject>();
 	public GameObject Room;
+	public static float DRAWING_RADIUS = 2f;
+
+	public bool faceUp = false;
 	// Use this for initialization
 	void Start () {
 		Debug.Log("Successfully loaded whiteboard...");
@@ -29,31 +33,47 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.deviceOrientation == DeviceOrientation.FaceUp) {
+			if (zone != PlayerZone.SELECTION && !faceUp) {
+				faceUp = true;
+				zone = PlayerZone.SELECTION;
+
+		  		GameObject pens = GameObject.Find("Pens");
+		  		pens.transform.position = transform.position + new Vector3(transform.forward.x, transform.forward.y, transform.forward.z) * MENU_DIST;
+				pens.transform.forward = transform.forward;
+			}
+		} else {
+			faceUp = false;
+		}
+
 		if (Input.GetMouseButton(0)) {
+
 			if (zone == PlayerZone.WALKING) {
 				transform.position = transform.position + new Vector3(transform.forward.x * PLAYER_SPEED, 0, transform.forward.z * PLAYER_SPEED);
 				if (transform.position.x < PLAYER_FATNESS) {
-		  			transform.position = new Vector3(PLAYER_FATNESS, transform.position.y, transform.position.z);
-		  			zone = PlayerZone.CONFIRM_MENU;
-		  		} else if (transform.position.x > Room.transform.localScale.x / 2 - PLAYER_FATNESS) {
-		  			transform.position = new Vector3(Room.transform.localScale.x / 2 - PLAYER_FATNESS, transform.position.y, transform.position.z);
-		  			zone = PlayerZone.CONFIRM_MENU;
-		  		}
-		  		if (transform.position.z < PLAYER_FATNESS) {
-		  			transform.position = new Vector3(transform.position.x, transform.position.y, PLAYER_FATNESS);
-		  			zone = PlayerZone.CONFIRM_MENU;
-		  		} else if (transform.position.z > Room.transform.localScale.z / 2 - PLAYER_FATNESS) {
-		  			transform.position = new Vector3(transform.position.x, transform.position.y, Room.transform.localScale.z / 2 - PLAYER_FATNESS);
-		  			zone = PlayerZone.CONFIRM_MENU;
-		  		}
+					transform.position = new Vector3(PLAYER_FATNESS, transform.position.y, transform.position.z);
+				} else if (transform.position.x > Room.transform.localScale.x / 2 - PLAYER_FATNESS) {
+					transform.position = new Vector3(Room.transform.localScale.x / 2 - PLAYER_FATNESS, transform.position.y, transform.position.z);
+				}
+				if (transform.position.z < PLAYER_FATNESS) {
+					transform.position = new Vector3(transform.position.x, transform.position.y, PLAYER_FATNESS);
+				} else if (transform.position.z > Room.transform.localScale.z / 2 - PLAYER_FATNESS) {
+					transform.position = new Vector3(transform.position.x, transform.position.y, Room.transform.localScale.z / 2 - PLAYER_FATNESS);
+				}
+			}
+
+			if (zone == PlayerZone.DRAWING) {
+				if (Input.deviceOrientation != DeviceOrientation.FaceUp || faceUp) {
+					GameObject spot = GameObject.Find("Spot");
+					GameObject spotClone = Instantiate(spot, transform.position + transform.forward * DRAWING_RADIUS, transform.rotation);
+					spots.Add(spotClone);
+				}
 			}
 	  	}
 
-	  	if (zone == PlayerZone.CONFIRM_MENU) {
-			GameObject menu = GameObject.Find("ConfirmMenu");
-			menu.transform.position = transform.position + new Vector3(transform.forward.x, 0, transform.forward.z) * MENU_DIST;
-			menu.transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
-	  		menu.SetActive(true);
+	  	if (zone == PlayerZone.SELECTION) {
+
 	  	}
 
 	  	if (zone == PlayerZone.DRAWING) {
