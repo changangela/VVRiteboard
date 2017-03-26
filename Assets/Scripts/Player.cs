@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	public static float PLAYER_SPEED = 1;
 	public static float PLAYER_FATNESS = 25;
+	public static Vector3 PLAYER_DEFAULT_POSITION = new Vector3(100, 25, 100);
 	public enum PlayerZone {
 		WALKING,
 		CONFIRM_MENU,
@@ -14,7 +15,7 @@ public class Player : MonoBehaviour {
 		DRAWING
 	};
 
-	public PlayerZone zone = PlayerZone.WALKING;
+	public static PlayerZone zone = PlayerZone.WALKING;
 
 	public GameObject Room;
 	// Use this for initialization
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour {
 			GameObject menu = GameObject.Find("ConfirmMenu");
 			menu.transform.position = transform.position + new Vector3(transform.forward.x, 0, transform.forward.z) * MENU_DIST;
 			menu.transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
+	  		menu.SetActive(true);
 	  	}
   		
 	}
