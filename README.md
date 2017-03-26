@@ -16,4 +16,4 @@ Here are examples of what can be made in VVRiteboard:
 </p>
 
 ## WearHacks 2017
-Our devpost submission can be viewed here: 
+Our devpost submission can be viewed here: https://devpost.com/software/vvriteboard
