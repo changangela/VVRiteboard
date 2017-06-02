@@ -1,5 +1,5 @@
 # VVRiteboard
-VVRiteboard is a 3D virtual reality paint and design world. It has a simple 360 degrees environment that the user can interact with. VVRiteboard adds an extra kick to drawing as it lets the user create and view their creations in 3D, unlike drawing normally with physical paper and pencil.
+**VVRiteboard** is a 3D virtual reality paint and design world. It has a simple 360 degrees environment that the user can interact with. VVRiteboard adds an extra kick to drawing as it lets the user create and view their creations in 3D, unlike drawing normally with physical paper and pencil.
 
 ## Required Technology
 VVRiteboard is run on Android devices and enhanced through the use of Google Cardboard or a device similar to it.
